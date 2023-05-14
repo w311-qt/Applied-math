@@ -3,9 +3,6 @@ from matplotlib import pyplot as plt
 
 
 def gradient_descent(f, x0, eps=1e-6, max_iter=100000, alpha=1e-3):
-    """
-    Реализация градиентного спуска для минимизации квадратичной функции.
-    """
     x = x0.copy()
     for i in range(max_iter):
         grad = f(x)

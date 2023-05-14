@@ -3,13 +3,21 @@ from scipy.optimize import brent
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-# определяем квадратичную функцию
 def f(x):
-    return x[0]**2 + 2 * x[1]**2
-
-# определяем градиент функции
+    return x[0]**2 + x[1]**2 - 2*x[1] +x[0]**2
 def grad_f(x):
-    return np.array([2 * x[0], 4 * x[1]])
+    return np.array([2*x[0] + 2*x[0], 2*x[1] - 2])
+
+#def f(x):
+ #   return x[0]**2 + x[1]**2
+#def grad_f(x):
+  #  return np.array([2*x[0], 2*x[1]])
+
+#def f(x):
+ #   return x[0] ** 2 + x[1] ** 2 - 2 * x[1] + x[0] ** 2
+
+#def grad_f(x):
+ #   return np.array([2 * x[0] + 2 * x[0], 2 * x[1] - 2])
 
 # реализуем метод сопряженных градиентов
 def conjugate_gradient_method(x0, f, grad_f, epsilon=1e-5, max_iterations=1000, verbose=True):

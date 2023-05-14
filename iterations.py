@@ -1,13 +1,18 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Квадратичная функция двух переменных
+#def quadratic(x):
+ #   return 3*x[0]**2 + 4*x[1]**2 - 2*x[0]*x[1] - 3*x[0] - 2*x[1] + 2
+#def grad_quadratic(x):
+ #   return np.array([6*x[0] - 2*x[1] - 3, 8*x[1] - 2*x[0] - 2])
+#def quadratic(x):
+ #   return x[0]**2 + x[1]**2
+#def grad_quadratic(x):
+ #   return np.array([2*x[0], 2*x[1]])
 def quadratic(x):
-    return x[0]**2 + 2 * x[1]**2
-
-# Градиент квадратичной функции
+    return x[0] ** 2 + x[1] ** 2 - 2 * x[1] + x[0] ** 2
 def grad_quadratic(x):
-    return np.array([2 * x[0], 4 * x[1]])
+    return np.array([2 * x[0] + 2 * x[0], 2 * x[1] - 2])
 
 
 # Алгоритм сходящегося градиента
@@ -52,8 +57,8 @@ plt.ylabel('y')
 plt.title('Gradient Descent')
 plt.show()
 
-x_vals = np.linspace(-1, 1, 100)
-y_vals = np.linspace(-1, 1, 100)
+x_vals = np.linspace(-3, 3, 100)
+y_vals = np.linspace(-3, 3, 100)
 x_grid, y_grid = np.meshgrid(x_vals, y_vals)
 z_grid = quadratic([x_grid, y_grid])
 

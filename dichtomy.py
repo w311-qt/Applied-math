@@ -1,14 +1,18 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-
+#def quadratic(x):
+ #   return 3*x[0]**2 + 4*x[1]**2 - 2*x[0]*x[1] - 3*x[0] - 2*x[1] + 2
+#def gradient_quadratic(x):
+ #   return np.array([6*x[0] - 2*x[1] - 3, 8*x[1] - 2*x[0] - 2])
+#def quadratic(x):
+ #   return x[0]**2 + x[1]**2
+#def gradient_quadratic(x):
+ #   return np.array([2*x[0], 2*x[1]])
 def quadratic(x):
-    return x[0]**2 + 2 * x[1]**2
-
-
+    return x[0] ** 2 + x[1] ** 2 - 2 * x[1] + x[0] ** 2
 def gradient_quadratic(x):
-    return np.array([2 * x[0], 4 * x[1]])
-
+    return np.array([2 * x[0] + 2 * x[0], 2 * x[1] - 2])
 
 def dichotomy(f, x, grad, eps=1e-6):
     a = -10.0
@@ -38,7 +42,7 @@ for i in range(100):
         break
     x = x - alpha_opt * grad
     path.append(x)
-    print("Iteration {}: x = {}, f(x) = {}, grad_f(x) = {}".format(i + 1, x, quadratic(x), np.linalg.norm(grad)))
+    print("Итерация {}: x = {}, f(x) = {}, Градиент = {}".format(i + 1, x, quadratic(x), np.linalg.norm(grad)))
 
 x_vals = np.linspace(-10, 10, 100)
 y_vals = np.linspace(-10, 10, 100)
@@ -61,5 +65,5 @@ ax.set_xlabel('x1')
 ax.set_ylabel('x2')
 plt.show()
 
-print("Optimal point:", x)
-print(f"Iterations: {iterations}")
+print("Оптимальная точка:", x)
+print(f"Итераций: {iterations}")
