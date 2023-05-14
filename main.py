@@ -2,13 +2,30 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def f(x):
-    return x[0] ** 2 + 2 * x[0] * x[1] + 3 * x[1] ** 2
-
+    return x[0]**2 + x[1]**2 - 2*x[1] +x[0]**2
 def grad_f(x):
-    return np.array([2 * x[0] + 2 * x[1], 2 * x[1] + 6 * x[1]])
+    return np.array([2*x[0] + 2*x[0], 2*x[1] - 2])
+
+#def f(x):
+ #   return x[0]**2 + x[1]**2
+#def grad_f(x):
+  #  return np.array([2*x[0], 2*x[1]])
+
+#def f(x):
+ #   return x[0] ** 2 + x[1] ** 2 - 2 * x[1] + x[0] ** 2
+
+#def grad_f(x):
+ #   return np.array([2 * x[0] + 2 * x[0], 2 * x[1] - 2])
 
 def hessian_f(x):
-    return np.array([[2+2*x[1], 2*x[0]], [2*x[0], 6+6*x[1]]])
+    h = 1e-5  # шаг для вычисления конечных разностей
+    H = np.zeros((2, 2))
+    for i in range(2):
+        for j in range(2):
+            # вычисляем конечную разность в направлении i-ой и j-ой координат
+            # используем формулу (f(x + h*e_i + h*e_j) - f(x + h*e_i) - f(x + h*e_j) + f(x)) / h^2
+            H[i, j] = (f(x + h*np.array([i == k for k in range(2)]) + h*np.array([j == k for k in range(2)])) - f(x + h*np.array([i == k for k in range(2)])) - f(x + h*np.array([j == k for k in range(2)])) + f(x)) / (h**2)
+    return H
 
 def steepest_descent(f, grad_f, hessian_f, x0, eps=1e-5, max_iter=100):
     x = x0

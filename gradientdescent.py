@@ -1,7 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from numpy import linspace
-
 
 def gradient_descent(f, grad, x0, learning_rate, num_iterations, eps = 1e-7):
     x = np.copy(x0)
@@ -35,8 +33,21 @@ def plot_trajectory(trajectory, f):
 
 
 # Example usage with a quadratic function
-f = lambda x: x[0] ** 2 + 2 * x[0] * x[1] + 3 * x[1] ** 2
-grad = lambda x: np.array([2*x[0] + 2*x[1] - 6, 4*x[1] + 2*x[0] - 8])
+f = lambda x: x[0] ** 2 + x[1] ** 2 - 2 * x[1] + x[0] ** 2
+grad = lambda x: np.array([2 * x[0] + 2 * x[0], 2 * x[1] - 2])
+
+#def f(x):
+ #   return 3*x[0]**2 + 4*x[1]**2 - 2*x[0]*x[1] - 3*x[0] - 2*x[1] + 2
+#def grad_f(x):
+ #   return np.array([6*x[0] - 2*x[1] - 3, 8*x[1] - 2*x[0] - 2])
+#def f(x):
+ #   return x[0]**2 + x[1]**2
+#def grad_f(x):
+  #  return np.array([2*x[0], 2*x[1]])
+#def f(x):
+ #   return x[0] ** 2 + x[1] ** 2 - 2 * x[1] + x[0] ** 2
+#def grad_f(x):
+ #   return np.array([2 * x[0] + 2 * x[0], 2 * x[1] - 2])
 
 x0 = np.array([1.0, 1.0])
 learning_rate = 0.2
@@ -44,5 +55,5 @@ num_iterations = 200
 
 x, trajectory, iterations = gradient_descent(f, grad, x0, learning_rate, num_iterations)
 plot_trajectory(trajectory, f)
-print(f"Optimal point: {x}")
-print(f"Iterations: {iterations}")
+print(f"Оптимальная точка: {x}")
+print(f"Итераций: {iterations}")
